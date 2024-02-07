@@ -3,26 +3,7 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import { withI18n } from "../components";
 import { isProduction } from ".";
-
-// Translations json
-import ach from "../translations/ach.json";
-import ar from "../translations/ar.json";
-import bn from "../translations/bn.json";
-import de from "../translations/de.json";
-import es from "../translations/es.json";
-import fr from "../translations/fr.json";
-import id from "../translations/id.json";
-import it from "../translations/it.json";
-import ko from "../translations/ko.json";
-import pl from "../translations/pl.json";
-import pt from "../translations/pt.json";
-import ru from "../translations/ru.json";
-import si from "../translations/si.json";
-import th from "../translations/th.json";
-import tr from "../translations/tr.json";
-import vi from "../translations/vi.json";
-import zh_cn from "../translations/zh_cn.json";
-import zh_tw from "../translations/zh_tw.json";
+import CrowdinOtaI18next, { distribution_hash } from "./otasdk";
 
 const LANGUAGE_KEY = "i18n_language";
 const DEFAULT_LANGUAGE = "EN";
@@ -146,42 +127,24 @@ const loadLanguageJson = async (lang: string) => {
 
 const initial_language = getInitialLanguage();
 const i18n_config = {
-  resources: {
-    ACH: { translations: { ...ach } },
-    AR: { translations: { ...ar } },
-    BN: { translations: { ...bn } },
-    DE: { translations: { ...de } },
-    ES: { translations: { ...es } },
-    FR: { translations: { ...fr } },
-    ID: { translations: { ...id } },
-    IT: { translations: { ...it } },
-    KO: { translations: { ...ko } },
-    PL: { translations: { ...pl } },
-    PT: { translations: { ...pt } },
-    RU: { translations: { ...ru } },
-    SI: { translations: { ...si } },
-    TH: { translations: { ...th } },
-    TR: { translations: { ...tr } },
-    VI: { translations: { ...vi } },
-    ZH_CN: { translations: { ...zh_cn } },
-    ZH_TW: { translations: { ...zh_tw } },
-  },
   react: {
     hashTransKey(defaultValue: string) {
       return crc32(defaultValue);
     },
     useSuspense: true,
-
   },
   debug: true,
   lng: initial_language,
-  fallbackLng: "EN",
-  ns: ["translations"],
-  defaultNS: "translations",
+  fallbackLng: "de",
+  ns: ["wallets"],
+  defaultNS: "wallets",
 };
+
+const module = new CrowdinOtaI18next(distribution_hash);
 
 i18next
   .use(initReactI18next) // passes i18n down to react-i18next
+  .use(module)
   .init(i18n_config);
 
 export const initializeTranslations = async () => {
@@ -213,7 +176,10 @@ export const Localize = withI18n(i18next);
 export const localize = (string: string, values?: Record<string, unknown>) => {
   if (!string) return "";
 
-  return i18next.t(crc32(string).toString(), { defaultValue: string, ...values });
+  return i18next.t(crc32(string).toString(), {
+    defaultValue: string,
+    ...values,
+  });
 };
 
 export const loadIncontextTranslation = () => {

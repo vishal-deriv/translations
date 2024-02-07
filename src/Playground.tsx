@@ -8,9 +8,20 @@ import { Localize, localize } from ".";
 import { str as crc32 } from "crc-32";
 import React from "react";
 
-const MyComponent = ({ counter, setCounter }: {counter: number, setCounter: React.Dispatch<React.SetStateAction<number>>}) => {
+const MyComponent = ({
+  counter,
+  setCounter,
+}: {
+  counter: number;
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const { t } = useTranslation();
-  console.log("value =======>", counter, "<========== ==========>I am getting rerender", "<===========");
+  console.log(
+    "value =======>",
+    counter,
+    "<========== ==========>I am getting rerender",
+    "<==========="
+  );
   return (
     <div>
       <button onClick={() => setCounter(counter + 1)}>Increment</button>
@@ -134,10 +145,18 @@ export default function Playground() {
             i18n_default_text="Earn a range of payouts by correctly predicting market movements with <0>options</0>, or get the upside of CFDs without risking more than your initial stake with <1>multipliers</1>."
             components={[
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
             ]}
           />
@@ -151,10 +170,54 @@ export default function Playground() {
             defaults="Earn a range of payouts by correctly predicting market movements with <0>options</0>, or get the upside of CFDs without risking more than your initial stake with <1>multipliers</1>."
             components={[
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
+              />,
+            ]}
+          />
+        </div>
+
+        <div>
+          <span>
+            <strong>Localize component : </strong>
+          </span>
+          <Localize
+            i18n_default_text="You may also call <0>+447723580049</0> to place your complaint."
+            components={[
+              <div
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
+              />,
+            ]}
+          />
+        </div>
+
+        <div>
+          <span>
+            <strong>Trans component : </strong>
+          </span>
+          <Trans
+            defaults="You may also call <0>+447723580049</0> to place your complaint."
+            components={[
+              <div
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
             ]}
           />
@@ -173,7 +236,11 @@ export default function Playground() {
             components={[
               <MyComponent counter={counter} setCounter={setCounter} />,
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
             ]}
           />
@@ -188,7 +255,11 @@ export default function Playground() {
             components={[
               <MyComponent counter={counter} setCounter={setCounter} />,
               <div
-                className={`${i18n.language === "EN" ? "localisation-playground-bg-skyblue" : ""}`}
+                className={`${
+                  i18n.language === "EN"
+                    ? "localisation-playground-bg-skyblue"
+                    : ""
+                }`}
               />,
             ]}
           />
