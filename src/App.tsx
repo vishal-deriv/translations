@@ -1,13 +1,15 @@
-import { I18nextProvider } from "react-i18next";
-import Playground from "./Playground";
-import { i18nInstance } from "./utils";
+import "./App.css";
 
-import './App.css';
+import Playground from "./Playground";
+import { TranslationProvider } from "@context/index";
 
 export default function App() {
   return (
-    <I18nextProvider i18n={i18nInstance} defaultNS={"translations"}>
+    <TranslationProvider
+      defaultLang="EN"
+      distributionHash="8fd489eeaec791a315f9e39jxvy"
+    >
       <Playground />
-    </I18nextProvider>
+    </TranslationProvider>
   );
 }

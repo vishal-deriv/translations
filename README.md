@@ -1,4 +1,4 @@
-# `@deriv/translations`
+# `@deriv-com/translations`
 
 -   Extract new string translations to Crowdin.
 -   Staging/dev branch is the source of truth for strings that should be translated.

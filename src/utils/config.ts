@@ -19,3 +19,9 @@ export const isProduction = (): boolean => {
     window.location.hostname
   );
 };
+
+export const isStaging = () =>
+  /staging-app\.deriv\.com/i.test(window.location.hostname);
+
+export const isLocal = () =>
+  /localhost(:\d+)?$/i.test(window.location.hostname);

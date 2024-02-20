@@ -1,1 +1,1 @@
-export { default as withI18n } from "./localize";
+export { default as Localize } from "./localize";

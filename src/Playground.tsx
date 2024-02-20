@@ -2,11 +2,13 @@
  * This is a playground component to test the i18n functionality.
  */
 
-import { Trans, useTranslation } from "react-i18next";
-import { Localize, localize } from ".";
+import { Trans } from "react-i18next";
+import { localize } from "@utils/index";
+import { Localize } from "@components/index";
 
 import { str as crc32 } from "crc-32";
 import React from "react";
+import { useTranslations } from "@hooks/index";
 
 const MyComponent = ({
   counter,
@@ -15,13 +17,8 @@ const MyComponent = ({
   counter: number;
   setCounter: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-  const { t } = useTranslation();
-  console.log(
-    "value =======>",
-    counter,
-    "<========== ==========>I am getting rerender",
-    "<==========="
-  );
+  const { t } = useTranslations();
+
   return (
     <div>
       <button onClick={() => setCounter(counter + 1)}>Increment</button>
@@ -32,7 +29,7 @@ const MyComponent = ({
 };
 
 export default function Playground() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslations();
 
   const [counter, setCounter] = React.useState(0);
 
