@@ -1,4 +1,3 @@
-import { str as crc32 } from "crc-32";
 import i18next from "i18next";
 import { constants } from "@utils/index";
 
@@ -22,21 +21,6 @@ export const getInitialLanguage = () => {
 
 const initial_language = getInitialLanguage();
 
-/**
- * @deprecated use the `localize` function from the `useTranslations` hook
- *
- * @param {string} string
- * @param {Record<string, unknown>} values
- * @returns {string}
- */
-export const localize = (string: string, values?: Record<string, unknown>) => {
-  if (!string) return "";
-
-  return i18next.t(crc32(string).toString(), {
-    defaultValue: string,
-    ...values,
-  });
-};
 
 export const getLanguage = () => i18next.language || initial_language;
 

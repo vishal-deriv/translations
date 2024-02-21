@@ -1,5 +1,3 @@
-export const distribution_hash = "8fd489eeaec791a315f9e39jxvy";
-
 export const ALL_LANGUAGES = Object.freeze({
   ACH: "Translations",
   EN: "English",

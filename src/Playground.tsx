@@ -1,5 +1,5 @@
 /**
- * This is a playground component to test the i18n functionality.
+ * This is a playground component to test the package functionality.
  */
 
 import { Trans } from "react-i18next";
