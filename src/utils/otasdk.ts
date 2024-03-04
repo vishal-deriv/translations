@@ -1,27 +1,24 @@
-import otaClient from "@crowdin/ota-client";
 import { ModuleType } from "i18next";
 
-interface CrowdinOtaI18nextModule {
-  otaClient: otaClient;
+interface OtaI18nextModule {
+  cdnUrl: string;
   type: ModuleType;
 }
 
 type ReadCallback = (err: unknown, val: Record<string, unknown>) => void;
 
-export default class CrowdinOtaI18next implements CrowdinOtaI18nextModule {
+export default class OtaI18next implements OtaI18nextModule {
   type: ModuleType;
-  otaClient: otaClient;
+  cdnUrl: string;
 
-  constructor(hash: string) {
+  constructor(cdnUrl: string) {
     this.type = "backend";
-    this.otaClient = new otaClient(hash);
+    this.cdnUrl = cdnUrl;
   }
 
   read(language: string, _namespace: string, callback: ReadCallback) {
-    this.otaClient
-      .getFileTranslations(
-        "/content/" + language.toLowerCase() + "/crowdin/messages.json"
-      )
+    fetch(this.cdnUrl + "/translations/" + language.toLowerCase() + ".json")
+      .then((res) => res.json())
       .then((val) => {
         callback(null, val);
       })

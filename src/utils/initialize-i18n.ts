@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { str as crc32 } from "crc-32";
-import { CrowdinOtaSdk } from "@utils/index";
+import { OtaSdk } from "@utils/index";
 import { initReactI18next } from "react-i18next";
 import { getInitialLanguage } from "@utils/index";
 
@@ -24,11 +24,11 @@ const i18n_config = {
 };
 
 export default function initializeI18n({
-  distributionHash,
+  cdnUrl,
 }: {
-  distributionHash: string;
+  cdnUrl: string;
 }) {
-  const module = new CrowdinOtaSdk(distributionHash);
+  const module = new OtaSdk(cdnUrl);
 
   i18next
     .use(module)

@@ -8,20 +8,20 @@ import type { i18n } from "i18next";
 
 export default function TranslationProvider({
   children,
-  distributionHash,
+  cdnUrl,
   defaultLang,
 }: {
   children: React.ReactNode;
-  distributionHash: string;
+  cdnUrl: string;
   defaultLang: keyof Omit<typeof constants.ALL_LANGUAGES, "ACH">;
 }) {
   const [i18next, seti18Next] = useState<i18n | null>(null);
 
   useEffect(() => {
-    const i18Ins = initializeI18n({ distributionHash });
+    const i18Ins = initializeI18n({ cdnUrl });
 
     seti18Next(i18Ins);
-  }, [distributionHash]);
+  }, [cdnUrl]);
 
   if (!i18next) return null;
 

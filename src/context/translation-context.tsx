@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import type { i18n as Ti18n } from "i18next";
-
-const LANGUAGE_KEY = "i18n_language";
+import { constants } from "@utils/index";
 
 export const TranslationContext = createContext<{
   currentLang: string;
@@ -23,7 +22,7 @@ export default function TranslationContextProvider({
     i18nInstance.changeLanguage(lang);
 
     setCurrentLanguage(lang);
-    localStorage.setItem(LANGUAGE_KEY, lang);
+    localStorage.setItem(constants.LANGUAGE_KEY, lang);
   };
 
   return (

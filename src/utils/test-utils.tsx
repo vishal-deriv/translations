@@ -1,13 +1,19 @@
-import { render } from "@testing-library/react";
 import type { ReactNode } from "react";
-import { TranslationProvider } from "@/index";
+import { render } from "@testing-library/react";
+import { constants } from "@utils/index";
+import { TranslationProvider } from "@context/index";
 
 const customRender = (ui: ReactNode, options = {}) =>
   render(ui, {
     wrapper: ({ children }) => (
       <TranslationProvider
         defaultLang="EN"
-        distributionHash="8fd489eeaec791a315f9e39jxvy"
+        cdnUrl={
+          process.env.REACT_APP_TRANSLATION_CDN_URL as keyof Omit<
+            typeof constants.ALL_LANGUAGES,
+            "ACH"
+          >
+        }
       >
         {children}
       </TranslationProvider>
