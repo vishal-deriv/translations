@@ -1,5 +1,5 @@
 {
-  "name": "@deriv-com/localisation",
+  "name": "@deriv-com/translations",
   "type": "module",
   "files": [
     "dist"

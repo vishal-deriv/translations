@@ -1,9 +1,9 @@
-.localisation-playground {
+.translations-playground {
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 
-.localisation-playground-card {
+.translations-playground-card {
   border-radius: 1rem;
   padding: 1rem;
   display: flex;
@@ -12,24 +12,24 @@
   margin: 1rem;
 }
 
-.localisation-playground-m-low {
+.translations-playground-m-low {
   margin: 0.5rem;
 }
 
-.localisation-playground-bg-skyblue {
+.translations-playground-bg-skyblue {
   background: skyblue;
 }
 
-.localisation-playground-bg-lightgray {
+.translations-playground-bg-lightgray {
   background: lightgray;
 }
 
 
-.localisation-playground-bg-coral {
+.translations-playground-bg-coral {
   background: coral;
 }
 
-.localisation-playground-btn {
+.translations-playground-btn {
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem;

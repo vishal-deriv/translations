@@ -60,7 +60,7 @@ export default function Playground({
 
         <button
           onClick={handleSubmit}
-          className="localisation-playground-m-low localisation-playground-btn"
+          className="translations-playground-m-low translations-playground-btn"
         >
           Submit translation source
         </button>
@@ -69,7 +69,7 @@ export default function Playground({
       <div>
         {languages.map((lng) => (
           <button
-            className="localisation-playground-m-low localisation-playground-btn"
+            className="translations-playground-m-low translations-playground-btn"
             key={lng}
             type="button"
             onClick={() => changeLanguage(lng)}
@@ -80,21 +80,21 @@ export default function Playground({
       </div>
       <div>
         <div style={{ flex: 1, display: 'flex' }}>
-          <div className="localisation-playground-card localisation-playground-bg-lightgray">
+          <div className="translations-playground-card translations-playground-bg-lightgray">
             <h1>
               <code>localize</code> function from <code>useTranslations</code>
             </h1>
             <div>{t("Reports")}</div>
           </div>
 
-          <div className="localisation-playground-card localisation-playground-bg-skyblue">
+          <div className="translations-playground-card translations-playground-bg-skyblue">
             <h1>
               Deprecated <code>localize</code> function
             </h1>
             <div>{localize("Reports")}</div>
           </div>
 
-          <div className="localisation-playground-card localisation-playground-bg-lightgray">
+          <div className="translations-playground-card translations-playground-bg-lightgray">
             <h1>
               <code>Localize</code> component
             </h1>
@@ -105,14 +105,14 @@ export default function Playground({
                   <div
                     className={`${
                       currentLang === "EN"
-                        ? "localisation-playground-bg-skyblue"
+                        ? "translations-playground-bg-skyblue"
                         : ""
                     }`}
                   />,
                   <div
                     className={`${
                       currentLang === "EN"
-                        ? "localisation-playground-bg-skyblue"
+                        ? "translations-playground-bg-skyblue"
                         : ""
                     }`}
                   />,
