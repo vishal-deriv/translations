@@ -1,3 +1,5 @@
+import "./Playground.css";
+
 /**
  * This is a playground component to test the package functionality.
  */
@@ -7,12 +9,14 @@ import { Localize, localize, useTranslations } from "@/index";
 
 type TPlayground = {
   translationData: Record<string, string>;
+  isLoading: boolean;
   languages: string[];
 };
 
 export default function Playground({
   translationData,
   languages,
+  isLoading,
 }: TPlayground) {
   const { localize: t, switchLanguage, currentLang } = useTranslations();
 
@@ -45,13 +49,7 @@ export default function Playground({
         <div>
           <input
             value={urlInput}
-            style={{
-              padding: "0.5rem",
-              margin: "0.5rem",
-              borderRadius: "5px",
-              border: "1px solid #000",
-              width: "400px",
-            }}
+            className="translations-input-box"
             onChange={({ target }) => setUrlInput(target.value)}
             placeholder="https://pub-5ce11fcb15f34c0a9ce8ba7086d16e6a.r2.dev"
           />
@@ -79,7 +77,7 @@ export default function Playground({
         ))}
       </div>
       <div>
-        <div style={{ flex: 1, display: 'flex' }}>
+        <div style={{ flex: 1, display: "flex" }}>
           <div className="translations-playground-card translations-playground-bg-lightgray">
             <h1>
               <code>localize</code> function from <code>useTranslations</code>
@@ -122,28 +120,22 @@ export default function Playground({
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {languages.map((lng) => (
-            <div style={{flex: 0.5}}>
-              <h1>{lng}</h1>
-              <div
-                key={lng}
-                style={{
-                  maxHeight: "400px",
-                  marginBottom: "1rem",
-                  borderRadius: 40,
-                  background: "lightyellow",
-                  overflow: "scroll",
-                  padding: "1rem",
-                }}
-              >
-                  <code style={{ lineHeight: "1.5rem", fontWeight: "bold" }}>
+        {isLoading ? (
+          <div>Loading... </div>
+        ) : (
+          <div className="translations-source-view-container">
+            {languages.map((lng) => (
+              <div key={lng} style={{ flex: 0.5 }}>
+                <h1>{lng}</h1>
+                <div key={lng} className="translations-json-container">
+                  <code className="translations-code-box">
                     {JSON.stringify(translationData?.[lng], null, 4)}
                   </code>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

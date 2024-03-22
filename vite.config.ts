@@ -37,7 +37,7 @@ export default defineConfig({
               "src/utils/test-utils.tsx",
               "src/App.tsx",
               "src/main.tsx",
-              "src/vite-env.d.ts"
+              "src/vite-env.d.ts",
             ],
           })
           .map((file) => {
@@ -65,7 +65,7 @@ export default defineConfig({
         "src/playground/*.tsx",
         "src/App.tsx",
         "src/main.tsx",
-        "src/vite-env.d.ts"
+        "src/vite-env.d.ts",
       ],
     }),
   ],
@@ -76,6 +76,7 @@ export default defineConfig({
       "@utils": resolve(__dirname, "src/utils"),
       "@provider": resolve(__dirname, "src/context"),
       "@components": resolve(__dirname, "src/components"),
+      "@playground": resolve(__dirname, "src/playground"),
     },
   },
 

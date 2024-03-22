@@ -1,4 +1,4 @@
-import PlaygroundContainer from "./playground/PlaygroundContainer";
+import { PlaygroundContainer } from "@playground/index";
 
 export default function App() {
   return <PlaygroundContainer />;

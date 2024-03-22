@@ -1,8 +1,7 @@
-import "./App.css";
+import { useEffect, useState } from "react";
+import { TranslationProvider, initializeI18n } from "@/index";
 
 import Playground from "./Playground";
-import { TranslationProvider, initializeI18n } from "../index";
-import { useEffect, useState } from "react";
 
 const languages = [
   "ACH",
@@ -36,6 +35,7 @@ export default function PlaygroundContainer() {
   const [translationData, setTranslationData] = useState<
     Record<string, string>
   >({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTranslations = async () => {
@@ -53,6 +53,7 @@ export default function PlaygroundContainer() {
       }, {});
 
       setTranslationData(translations);
+      setIsLoading(false);
     };
 
     fetchTranslations();
@@ -60,7 +61,11 @@ export default function PlaygroundContainer() {
 
   return (
     <TranslationProvider defaultLang="EN" i18nInstance={i18next}>
-      <Playground translationData={translationData} languages={languages} />
+      <Playground
+        isLoading={isLoading}
+        translationData={translationData}
+        languages={languages}
+      />
     </TranslationProvider>
   );
 }
