@@ -1,26 +1,23 @@
 import type { ReactNode } from "react";
 import { render } from "@testing-library/react";
-import { constants } from "@utils/index";
-import { TranslationProvider } from "@context/index";
+import { TranslationProvider } from "@/provider/index";
+import { initializeI18n } from "@/utils/index";
 
-const customRender = (ui: ReactNode, options = {}) =>
-  render(ui, {
+const customRender = (ui: ReactNode, options = {}) => {
+  const i18n = initializeI18n({
+    cdnUrl: import.meta.env.VITE_TRANSLATION_CDN_URL as string,
+  });
+
+  return render(ui, {
     wrapper: ({ children }) => (
-      <TranslationProvider
-        defaultLang="EN"
-        cdnUrl={
-          process.env.REACT_APP_TRANSLATION_CDN_URL as keyof Omit<
-            typeof constants.ALL_LANGUAGES,
-            "ACH"
-          >
-        }
-      >
+      <TranslationProvider defaultLang="EN" i18nInstance={i18n}>
         {children}
       </TranslationProvider>
     ),
 
     ...options,
   });
+};
 
 export * from "@testing-library/react";
 

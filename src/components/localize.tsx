@@ -1,4 +1,3 @@
-import i18next from "i18next";
 import { Trans } from "react-i18next";
 
 type TLocalizeProps = {
@@ -18,7 +17,6 @@ export default function Localize({
 }: TLocalizeProps) {
   return (
     <Trans
-      i18n={i18next}
       defaults={i18n_default_text}
       values={values}
       components={components}

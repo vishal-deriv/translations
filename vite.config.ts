@@ -15,7 +15,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime", "react-dom"],
+      external: ["react", "react-dom", "react/jsx-runtime", "react-dom/client"],
       output: {
         assetFileNames: "assets/[name]",
         entryFileNames: "[name].js",
@@ -32,9 +32,12 @@ export default defineConfig({
               "**/*.spec.ts",
               "**/*.spec.tsx",
               "**/__tests__/**",
+              "**/playground/*.tsx",
+              "setupTests.ts",
+              "src/utils/test-utils.tsx",
               "src/App.tsx",
               "src/main.tsx",
-              "src/Playground.tsx",
+              "src/vite-env.d.ts"
             ],
           })
           .map((file) => {
@@ -55,11 +58,14 @@ export default defineConfig({
     dts({
       include: ["src"],
       exclude: [
+        "setupTests.ts",
+        "src/utils/test-utils.tsx",
         "src/**/*.test.tsx",
         "src/**/*.test.ts",
+        "src/playground/*.tsx",
         "src/App.tsx",
         "src/main.tsx",
-        "src/Playground.tsx",
+        "src/vite-env.d.ts"
       ],
     }),
   ],
@@ -68,7 +74,7 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
       "@hooks": resolve(__dirname, "src/hooks"),
       "@utils": resolve(__dirname, "src/utils"),
-      "@context": resolve(__dirname, "src/context"),
+      "@provider": resolve(__dirname, "src/context"),
       "@components": resolve(__dirname, "src/components"),
     },
   },

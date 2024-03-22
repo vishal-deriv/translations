@@ -1,4 +1,3 @@
-import i18next from "i18next";
 import { constants } from "@utils/index";
 
 export const getInitialLanguage = () => {
@@ -19,13 +18,10 @@ export const getInitialLanguage = () => {
   return constants.DEFAULT_LANGUAGE;
 };
 
-const initial_language = getInitialLanguage();
-
-
-export const getLanguage = () => i18next.language || initial_language;
-
-export const loadIncontextTranslation = () => {
-  const is_ach = getLanguage().toUpperCase() === "ACH";
+export const loadIncontextTranslation = (
+  lang: keyof typeof constants.ALL_LANGUAGES
+) => {
+  const is_ach = lang.toUpperCase() === "ACH";
   if (is_ach) {
     const jipt = document.createElement("script");
     jipt.type = "text/javascript";
@@ -38,5 +34,3 @@ export const loadIncontextTranslation = () => {
     document.head.appendChild(jipt);
   }
 };
-
-export const i18nInstance = i18next;

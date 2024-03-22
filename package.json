@@ -4,27 +4,26 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/main.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/main.js",
-      "types": "./dist/main.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run build && vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest ./src/__tests__/*.test.tsx",
-    "test:scripts": "vitest ./src/scripts/__tests__/*.test.js --environment node",
-    "prepublishOnly": "npm run build",
-    "preview": "vite preview"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^17.x || ^18.x",
+    "react-dom": "^17.x || ^18.x"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
