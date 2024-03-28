@@ -17,6 +17,9 @@ This is a localization library that uses `i18next`, `react-i18next`, and a custo
 
 ## Overview
 
+![image](https://github.com/amir-deriv/translations/assets/129206554/e303f0cb-e15f-41e9-92ad-f930e43c484b)
+
+
 ## Requirements
 
 The stored translation directory must have the following structure:
