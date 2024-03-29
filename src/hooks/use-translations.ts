@@ -5,10 +5,10 @@ import { str as crc32 } from "crc-32";
 
 export default function useTranslations() {
   const instanceValue = useContext(TranslationContext);
-  const options = useTranslation();
+  const { ready, t, i18n } = useTranslation();
 
   const localize = (tString: string, values: Record<string, unknown> = {}) =>
-    options.t(crc32(tString).toString(), { defaultValue: tString, ...values });
+    t(crc32(tString).toString(), { defaultValue: tString, ...values });
 
   if (!instanceValue) {
     throw new Error(
@@ -17,8 +17,9 @@ export default function useTranslations() {
   }
 
   return {
-    ...options,
+    ready,
     localize,
+    instance: i18n,
     switchLanguage: instanceValue.switchLanguage,
     currentLang: instanceValue.currentLang,
   };

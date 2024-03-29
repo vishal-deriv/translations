@@ -26,7 +26,8 @@
       "@provider/*": ["./src/provider/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@playground/*": ["./src/playground/*"]
+      "@playground/*": ["./src/playground/*"],
+      "@test-utils/*": ["./src/test-utils/*"]
     }
   },
   "include": ["src"],
