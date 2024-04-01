@@ -3,7 +3,6 @@ import { str as crc32 } from "crc-32";
 import { OtaSdk } from "@utils/index";
 import { initReactI18next } from "react-i18next";
 import { getInitialLanguage } from "@utils/index";
-import LanguageDetector from "i18next-browser-languagedetector";
 
 const i18n_config = {
   react: {
@@ -12,9 +11,9 @@ const i18n_config = {
     },
     useSuspense: true,
   },
-  debug: true,
+  debug: false,
   initImmediate: true,
-  fallbackLng: "en",
+  fallbackLng: "EN",
   interpolation: {
     escapeValue: false,
   },
@@ -28,7 +27,6 @@ export default function initializeI18n({ cdnUrl }: { cdnUrl: string }) {
   i18next
     .use(module)
     .use(initReactI18next)
-    .use(LanguageDetector)
     .init({ ...i18n_config, lng: initial_language });
 
   return i18next;
