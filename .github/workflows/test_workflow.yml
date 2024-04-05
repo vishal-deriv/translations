@@ -28,5 +28,7 @@ jobs:
         run: npm install --global npm
       - name: Install dependencies
         run: npm clean-install
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
       - name: Run the tests
         run: npm run test
