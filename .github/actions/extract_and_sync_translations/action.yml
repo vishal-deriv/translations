@@ -37,9 +37,11 @@ runs:
         node-version: '20'
 
     - name: Install dependencies
+      shell: bash
       run: npm install crc-32
 
     - name: Run script
+      shell: bash
       run: npx run-url https://raw.githubusercontent.com/deriv-com/translations/master/scripts/extract-translations.js
 
     - name: Crowdin pull action to download translations
