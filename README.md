@@ -42,7 +42,7 @@ npm install @deriv-com/translations
 - pass default language to the `TranslationProvider` component.
 
 ```jsx
-    import { initializeI18n, TranslationProvider } from '@deriv/translations';
+    import { initializeI18n, TranslationProvider } from '@deriv-com/translations';
     ...
     const i18nInstance = initializeI18n({ cdnUrl: 'https://cdn.example.com' })
 
@@ -128,7 +128,7 @@ The action takes following inputs:
 - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
 - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
 
-Refer to the action file [here](https://github.com/deriv-com/shared-actions/blob/master/.github/actions/sync_crowdin_translation_with_cloudflare/action.yml)
+Refer to the action file [here](https://github.com/deriv-com/translations/blob/master/.github/actions/extract_and_sync_translations/action.yml)
 
 ## Contributing
 
