@@ -101,7 +101,7 @@ The useTranslations hook is a custom hook that adds some more returned values on
 Example usage:
 
 ```javascript
-import { useTranslations } from "@username/package";
+import { useTranslations } from "@deriv-com/package";
 
 const MyComponent = () => {
   const { localize, switchLanguage, currentLang } = useTranslations();
