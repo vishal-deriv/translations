@@ -128,7 +128,7 @@ The action takes following inputs:
 - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
 - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
 
-Refer to the action file [here](https://github.com/deriv-com/translations/blob/master/.github/actions/extract_and_sync_translations/action.yml)
+Refer to the action file [here](https://github.com/deriv-com/translations/blob/main/.github/actions/extract_and_sync_translations/action.yml)
 
 ## Contributing
 
