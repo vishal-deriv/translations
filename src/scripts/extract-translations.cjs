@@ -2,7 +2,6 @@
 
 /* eslint-disable */
 const path = require("path");
-const program = require("commander");
 const crc32 = require("crc-32").str;
 const fs = require("fs");
 const glob = require("glob");
@@ -75,12 +74,6 @@ const getTranslatableFiles = () => {
   return file_paths;
 };
 
-program
-  .version("0.1.0")
-  .description("Build translation source.")
-  .option("-v, --verbose", "Displays the list of paths to be compiled")
-  .parse(process.argv);
-
 /** *********************************************
  * Common
  */
@@ -100,10 +93,6 @@ const getKeyHash = (string) => crc32(string);
       const file_path = file_paths[i];
 
       try {
-        if (program.verbose) {
-          console.log(file_path);
-        }
-
         const file = fs.readFileSync(file_path, "utf8");
         messages.push(
           ...(file_path.endsWith("xml")
