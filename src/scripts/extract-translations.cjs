@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-/* eslint-disable */
 const path = require("path");
 const crc32 = require("crc-32").str;
 const fs = require("fs");
-const program = require("commander");
 const glob = require("glob");
 const DOMParser = require("@xmldom/xmldom").DOMParser;
 
@@ -75,11 +73,6 @@ const getTranslatableFiles = () => {
   return file_paths;
 };
 
-program
-  .version("0.1.0")
-  .description("Build translation source.")
-  .option("-v, --verbose", "Displays the list of paths to be compiled")
-  .parse(process.argv);
 
 /** *********************************************
  * Common
