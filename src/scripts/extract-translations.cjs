@@ -4,9 +4,29 @@
 const path = require("path");
 const crc32 = require("crc-32").str;
 const fs = require("fs");
-const program = require("commander");
 const glob = require("glob");
-const DOMParser = require("@xmldom/xmldom").DOMParser;
+const { DOMParser } = require("@xmldom/xmldom");
+const { Command } = require("commander");
+
+const program = new Command();
+
+let SOURCE_DIRECTORY = 'src'
+
+program
+  .version("0.1.0")
+  .description("Build translation source.")
+  .option("-v, --verbose", "Displays the list of paths to be compiled and shows all the message and it's hash.")
+  .argument('<srcDir>', "source directory path i.e './src' which is by default './src'")
+  .description('source directory of the app from where the script will start finding for strings.')
+  .action((str) => {
+    SOURCE_DIRECTORY = str.replace(/^\.*\/+|\/+$/g, '');
+  });
+
+
+program.parse(process.argv);
+
+const options = program.opts();
+
 
 const getRegexPattern = () =>
   /(i18n_default_text={?|localize\()\s*(['"])\s*(.*?)(?<!\\)\2\s*/gs;
@@ -42,27 +62,14 @@ const getStringsFromXmlFile = (input) => {
 };
 
 const getTranslatableFiles = () => {
-  const packages_with_translations = [
-    "account",
-    "appstore",
-    "cashier",
-    "bot-web-ui",
-    "core",
-    "cfd",
-    "trader",
-    "bot-skeleton",
-    "reports",
-    "shared",
-  ];
   const globs = ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/xml/*.xml"];
   const file_paths = [];
 
-  for (let i = 0; i < packages_with_translations.length; i++) {
     for (let j = 0; j < globs.length; j++) {
       let files_found = glob.sync(
-        `/${packages_with_translations[i]}/src/${globs[j]}`,
+        `./${SOURCE_DIRECTORY}/${globs[j]}`,
         {
-          root: path.resolve(__dirname, "../.."), // deriv-app/packages/
+          root: path.resolve("."),
         }
       );
       files_found = files_found.filter(
@@ -70,16 +77,9 @@ const getTranslatableFiles = () => {
       );
       file_paths.push(...files_found);
     }
-  }
 
   return file_paths;
 };
-
-program
-  .version("0.1.0")
-  .description("Build translation source.")
-  .option("-v, --verbose", "Displays the list of paths to be compiled")
-  .parse(process.argv);
 
 /** *********************************************
  * Common
@@ -99,6 +99,11 @@ const getKeyHash = (string) => crc32(string);
     for (let i = 0; i < file_paths.length; i++) {
       const file_path = file_paths[i];
 
+      if(options.verbose) {
+        console.log(file_path);
+      }
+
+
       try {
         const file = fs.readFileSync(file_path, "utf8");
         messages.push(
@@ -113,17 +118,32 @@ const getKeyHash = (string) => crc32(string);
 
     // Hash the messages and set the key-value pair for json
     for (let i = 0; i < messages.length; i++) {
-      messages_json[getKeyHash(messages[i])] = messages[i];
+      const keyHash = getKeyHash(messages[i])
+      messages_json[keyHash] = messages[i];
+
+
+      if(options.verbose) {
+        console.log('** key_hash : ', keyHash, ' ** message : ',messages[i]);
+      }
+    }
+
+    // check if the directory of crowdin exist, if not create the directory of the crowdin first in the root
+    const crowdinDir = path.resolve("./crowdin");
+
+    if (!fs.existsSync(crowdinDir)) {
+      fs.mkdirSync(crowdinDir)
     }
 
     // Add to messages.json
     fs.writeFileSync(
-      path.resolve(__dirname, "../crowdin/messages.json"),
+      path.resolve("./crowdin/messages.json"),
       JSON.stringify(messages_json),
       "utf8",
       (err) => console.log(err)
     );
+
+    console.log("********* Translation strings compiled successfully *********")
   } catch (e) {
-    console.error(e);
+    program.error(e);
   }
 })();
