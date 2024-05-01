@@ -7,7 +7,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "extract-translations": "./dist/extract-translations.cjs"
+    "deriv-extract-translations": "./dist/deriv-extract-translations.cjs"
   },
   "exports": {
     ".": {
@@ -16,10 +16,10 @@
     }
   },
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp ./src/scripts/extract-translations.cjs ./dist/extract-translations.cjs",
+    "build": "tsc && vite build && cp ./src/scripts/deriv-extract-translations.cjs ./dist/deriv-extract-translations.cjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest ./src/__tests__/*.test.tsx",
     "prepublish": "npm run test && npm run build"
