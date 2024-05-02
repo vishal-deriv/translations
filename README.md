@@ -42,6 +42,7 @@ To get started, one would need few things to setup first which are:
   - `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard
   - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
   - `R2_BUCKET_NAME`: R2 bucket name farom the Cloudflare R2 dashboard
+4. Setup the github action to sync the translations to the CDN, refer to the [Syncing translations](#syncing-translations) section for more details.
 
 Install the package by running:
 
