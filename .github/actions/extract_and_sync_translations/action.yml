@@ -57,6 +57,7 @@ runs:
       run: npx deriv-extract-translations ${{ inputs.PROJECT_SOURCE_DIRECTORY }} --verbose
     
     - name: Setup crowdin config
+      shell: bash
       run: |
         echo -e "project_id_env: \"CROWDIN_PROJECT_ID\"\napi_token_env: \"CROWDIN_PERSONAL_TOKEN\"\nbase_path_env: \"CROWDIN_BASE_PATH\"\nbase_url_env: \"CROWDIN_BASE_URL\"\n\npreserve_hierarchy: true\n\nfiles:\n  - source: /crowdin/messages.json\n    translation: /translations/%two_letters_code%.json\n    languages_mapping:\n      two_letters_code:\n        zh-CN: zh_cn\n        zh-TW: zh_tw" > crowdin.yml
 
