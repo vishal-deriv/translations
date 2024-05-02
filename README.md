@@ -13,6 +13,7 @@ This is a localization library that uses `i18next`, `react-i18next`, and a custo
     - [~~`localize`~~](#localize-example)
     - [`useTranslations` Hook](#usetranslations-hook)
 - [Syncing translations to CDN](#syncing-translations)
+    - [Example usage of the action in the workflow file](#example-usage-of-the-action-in-the-workflow-file)
 - [Contributing](#contributing)
 
 ## Overview
@@ -120,6 +121,7 @@ There is a github action that syncs the translations from Crowdin to the CDN.
 
 The action takes following inputs:
 
+- `PROJECT_SOURCE_DIRECTORY`: Source directory of your project by default it is `src`
 - `CROWDIN_BRANCH_NAME`: Running on production, test or staging etc
 - `CROWDIN_PROJECT_ID`: Crowdin project ID which can be found in the crowdin project settings
 - `CROWDIN_PERSONAL_TOKEN`: Crowdin personal token which can be found in the crowdin account settings
@@ -129,6 +131,35 @@ The action takes following inputs:
 - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
 
 Refer to the action file [here](https://github.com/deriv-com/translations/blob/main/.github/actions/extract_and_sync_translations/action.yml)
+
+### Example usage of the action in the workflow file:
+
+```yaml
+name: Sync translations
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  sync_translations:
+    runs-on: ubuntu-latest
+      steps:
+        - name: Checkout to main branch
+          uses: actions/checkout@v3
+
+        - name: Sync translations
+          uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
+          with:
+            CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
+            CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+            CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+            R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+            R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+            R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+            R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+```
 
 ## Contributing
 

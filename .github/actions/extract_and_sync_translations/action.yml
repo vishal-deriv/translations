@@ -42,11 +42,11 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: npm clean-install
+      run: npm i @deriv-com/translations@1.1.1
 
-    - name: Run script
+    - name: Run extract script
       shell: bash
-      run: deriv-extract-translations ${{ inputs.PROJECT_SOURCE_DIRECTORY }} --verbose
+      run: npx deriv-extract-translations ${{ inputs.PROJECT_SOURCE_DIRECTORY }} --verbose
 
     - name: Crowdin pull action to download translations
       uses: crowdin/github-action@v1
