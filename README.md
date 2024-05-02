@@ -149,6 +149,8 @@ Refer to the action file [here](https://github.com/deriv-com/translations/blob/m
 
 ### Example usage of the action in the workflow file:
 
+Copy and paste the following workflow code in your repository in this path`.github/workflows/sync_translations.yml`
+
 ```yaml
 name: Sync translations
 
