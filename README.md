@@ -30,6 +30,20 @@ base_url is the cdnUrl passed to the `initializeI18n` function, and lang is the 
 
 ## Getting Started
 
+To get started, one would need few things to setup first which are:
+1. A Crowdin project which will be used to manage translations for your project.
+2. A Cloudflare R2 account to store the translations.
+  - Create a new bucket in the R2 account.
+  - Create a new access key in the R2 account.
+3. Add the following secrets to your repository:
+  - `CROWDIN_PROJECT_ID`: Open your project and navigate to `Tools` tab, you will be able to get the Project ID, store that in your github secrets
+  - `CROWDIN_PERSONAL_TOKEN`: This can be obtained by clicking on your profile icon and goto `Settings > API` and create a new personal access token, store that in your github secrets
+  - `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard
+  - `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard
+  - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
+  - `R2_BUCKET_NAME`: R2 bucket name farom the Cloudflare R2 dashboard
+4. Setup the github action to sync the translations to the CDN, refer to the [Syncing translations](#syncing-translations) section for more details.
+
 Install the package by running:
 
 ```bash
@@ -135,6 +149,8 @@ The action takes following inputs:
 Refer to the action file [here](https://github.com/deriv-com/translations/blob/main/.github/actions/extract_and_sync_translations/action.yml)
 
 ### Example usage of the action in the workflow file:
+
+Copy and paste the following workflow code in your repository in this path`.github/workflows/sync_translations.yml`
 
 ```yaml
 name: Sync translations
