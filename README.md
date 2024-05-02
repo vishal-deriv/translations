@@ -122,6 +122,8 @@ There is a github action that syncs the translations from Crowdin to the CDN.
 The action takes following inputs:
 
 - `PROJECT_SOURCE_DIRECTORY`: Source directory of your project by default it is `src`
+- `CROWDIN_BASE_PATH`: Base path of the translations in the Crowdin project by default it is `.`
+- `CROWDIN_BASE_URL`: Base URL of the CDN where the translations are stored, default is `https://api.crowdin.com`
 - `CROWDIN_BRANCH_NAME`: Running on production, test or staging etc
 - `CROWDIN_PROJECT_ID`: Crowdin project ID which can be found in the crowdin project settings
 - `CROWDIN_PERSONAL_TOKEN`: Crowdin personal token which can be found in the crowdin account settings
@@ -153,6 +155,8 @@ jobs:
         uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
         with:
           CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
+          CROWDIN_BASE_URL: ${{ env.CROWDIN_BASE_URL }}
+          CROWDIN_BASE_PATH: ${{ env.CROWDIN_BASE_PATH }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}

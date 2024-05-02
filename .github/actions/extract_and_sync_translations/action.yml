@@ -16,6 +16,14 @@ inputs:
   CROWDIN_PERSONAL_TOKEN:
     description: "Crowdin personal token which can be found in the crowdin account settings"
     required: true
+  CROWDIN_BASE_URL:
+    description: "Base URL of the crowdin project"
+    default: "https://api.crowdin.com"
+    required: false
+  CROWDIN_BASE_PATH:
+    description: "Crowdin personal token which can be found in the crowdin account settings"
+    default: "."
+    required: false
   R2_ACCOUNT_ID:
     description: "R2 account ID from the Cloudflare R2 dashboard"
     required: true
@@ -47,6 +55,10 @@ runs:
     - name: Run extract script
       shell: bash
       run: npx deriv-extract-translations ${{ inputs.PROJECT_SOURCE_DIRECTORY }} --verbose
+    
+    - name: Setup crowdin config
+      run: |
+        echo -e "project_id_env: \"CROWDIN_PROJECT_ID\"\napi_token_env: \"CROWDIN_PERSONAL_TOKEN\"\nbase_path_env: \"CROWDIN_BASE_PATH\"\nbase_url_env: \"CROWDIN_BASE_URL\"\n\npreserve_hierarchy: true\n\nfiles:\n  - source: /crowdin/messages.json\n    translation: /translations/%two_letters_code%.json\n    languages_mapping:\n      two_letters_code:\n        zh-CN: zh_cn\n        zh-TW: zh_tw" > crowdin.yml
 
     - name: Crowdin pull action to download translations
       uses: crowdin/github-action@v1
@@ -60,6 +72,8 @@ runs:
       env:
         CROWDIN_PROJECT_ID: ${{ inputs.CROWDIN_PROJECT_ID }}
         CROWDIN_PERSONAL_TOKEN: ${{ inputs.CROWDIN_PERSONAL_TOKEN }}
+        CROWDIN_BASE_URL: ${{ inputs.CROWDIN_BASE_URL }}
+        CROWDIN_BASE_PATH: ${{ inputs.CROWDIN_BASE_PATH }}
 
     - name: R2 Upload Action to upload translations to Cloudflare
       uses: ryand56/r2-upload-action@latest
