@@ -145,20 +145,20 @@ on:
 jobs:
   sync_translations:
     runs-on: ubuntu-latest
-      steps:
-        - name: Checkout to main branch
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout to main branch
+        uses: actions/checkout@v3
 
-        - name: Sync translations
-          uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
-          with:
-            CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
-            CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-            CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-            R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-            R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-            R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-            R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+      - name: Sync translations
+        uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
+        with:
+          CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
 ```
 
 ## Contributing
