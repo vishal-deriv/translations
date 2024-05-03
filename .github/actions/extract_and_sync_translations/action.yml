@@ -2,6 +2,9 @@ name: Sync Translations with CloudFlare
 description: Sync Crowdin translations of desired environment with cloudflare
 
 inputs:
+  PROJECT_NAME:
+    description: "Project name which is needed for R2 bucket folder"
+    required: true
   PROJECT_SOURCE_DIRECTORY:
     description: "Project source directory"
     default: "./src"
@@ -84,4 +87,4 @@ runs:
         r2-secret-access-key: ${{ inputs.R2_SECRET_ACCESS_KEY }}
         r2-bucket: ${{ inputs.R2_BUCKET_NAME }}
         source-dir: ./translations
-        destination-dir: ./${{ inputs.CROWDIN_BRANCH_NAME }}/translations
+        destination-dir: ./${{ inputs.PROJECT_NAME }}/${{ inputs.CROWDIN_BRANCH_NAME }}/translations

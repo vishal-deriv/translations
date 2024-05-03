@@ -41,7 +41,9 @@ To get started, one would need few things to setup first which are:
   - `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard
   - `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard
   - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
-  - `R2_BUCKET_NAME`: R2 bucket name farom the Cloudflare R2 dashboard
+  - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
+4. Add the following environment variable in your repository:
+    - `PROJECT_NAME`: Add project name in your environment variable which will be used for Cloudflare R2 folder name for translations
 4. Setup the github action to sync the translations to the CDN, refer to the [Syncing translations](#syncing-translations) section for more details.
 
 Install the package by running:
@@ -170,6 +172,7 @@ jobs:
       - name: Sync translations
         uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
         with:
+          PROJECT_NAME: ${{ env.PROJECT_NAME }}
           CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
           CROWDIN_BASE_URL: ${{ env.CROWDIN_BASE_URL }}
           CROWDIN_BASE_PATH: ${{ env.CROWDIN_BASE_PATH }}
