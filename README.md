@@ -1,6 +1,6 @@
 # `@deriv-com/translations`
 
-This is a localization library that uses `i18next`, `react-i18next`, and a custom OTA SDK for translations.
+This is a localization library that uses `i18next`, `react-i18next`, and a custom OTA SDK for translations.    
 
 **In this document**
 
